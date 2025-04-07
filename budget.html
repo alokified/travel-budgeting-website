@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Planner - Travel Budget</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/budget.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">Travel Budget</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="budget.html" class="active">Budget</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="budget-container">
+        <h1>Plan Your Trip Budget</h1>
+        
+        <form id="budgetForm" class="budget-form">
+            <div class="form-section">
+                <h2>Trip Details</h2>
+                <div class="form-group">
+                    <label for="destination">Destination</label>
+                    <input type="text" id="destination" required placeholder="Enter your destination">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="duration">Number of Days</label>
+                        <input type="number" id="duration" required min="1" placeholder="Duration of trip">
+                    </div>
+                    <div class="form-group">
+                        <label for="travelers">Number of Travelers</label>
+                        <input type="number" id="travelers" required min="1" placeholder="Number of travelers">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="currency">Currency</label>
+                        <select id="currency" required>
+                            <option value="USD">INR (₹)</option>
+                            <option value="EUR">EUR (€)</option>
+                            <option value="USD">USD ($)</option>
+                            <option value="JPY">JPY (¥)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="budgetType">Budget Type</label>
+                        <select id="budgetType" required>
+                            <option value="economy">Economy</option>
+                            <option value="standard" selected>Standard</option>
+                            <option value="luxury">Luxury</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>Expense Categories</h2>
+                <div class="expense-categories">
+                    <div class="expense-item">
+                        <label for="transport">Transportation</label>
+                        <div class="subcategories">
+                            <input type="number" placeholder="Flights" data-category="transport">
+                            <input type="number" placeholder="Local Transport" data-category="transport">
+                            <input type="number" placeholder="Car Rental" data-category="transport">
+                        </div>
+                    </div>
+
+                    <div class="expense-item">
+                        <label for="accommodation">Accommodation</label>
+                        <div class="subcategories">
+                            <input type="number" placeholder="Hotels" data-category="accommodation">
+                            <input type="number" placeholder="Airbnb" data-category="accommodation">
+                            <input type="number" placeholder="Other" data-category="accommodation">
+                        </div>
+                    </div>
+
+                    <div class="expense-item">
+                        <label for="food">Food & Dining</label>
+                        <div class="subcategories">
+                            <input type="number" placeholder="Restaurants" data-category="food">
+                            <input type="number" placeholder="Groceries" data-category="food">
+                            <input type="number" placeholder="Snacks" data-category="food">
+                        </div>
+                    </div>
+
+                    <div class="expense-item">
+                        <label for="activities">Activities</label>
+                      <div class="subcategories">
+                            <input type="number" placeholder="Tours" data-category="activities">
+                            <input type="number" placeholder="Entrance Fees" data-category="activities">
+                            <input type="number" placeholder="Events" data-category="activities">
+                        </div>
+                    </div>
+
+                    <div class="expense-item">
+                        <label for="misc">Miscellaneous</label>
+                        <div class="subcategories">
+                            <input type="number" placeholder="Shopping" data-category="misc">
+                            <input type="number" placeholder="Insurance" data-category="misc">
+                            <input type="number" placeholder="Other" data-category="misc">
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" id="addCustomCategory" class="secondary-button">+ Add Custom Category</button>
+            </div>
+        </form>
+
+        <div class="budget-summary">
+            <h2>Budget Summary</h2>
+            <div class="summary-charts">
+                <div class="chart-container">
+                    <canvas id="expenseChart"></canvas>
+                </div>
+            </div>
+            <table class="budget-table">
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Amount</th>
+                        <th>Per Day</th>
+                        <th>Per Person</th>
+                        <th>Percentage</th>
+                    </tr>
+                </thead>
+                <tbody id="budgetTableBody">
+                    <!-- Dynamically populated by JavaScript -->
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td><strong>Total</strong></td>
+                        <td><strong id="totalAmount">₹0</strong></td>
+                        <td><strong id="perDayAmount">₹0</strong></td>
+                        <td><strong id="perPersonAmount">₹0</strong></td>
+                        <td>100%</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div class="tips-section">
+            <h2>Travel Tips & Recommendations</h2>
+            <div id="tipsList" class="tips-list">
+                <!-- Dynamically populated by JavaScript -->
+            </div>
+        </div>
+
+        <div class="checklist-section">
+            <h2>Travel Checklist</h2>
+            <div id="checklistItems" class="checklist-items">
+                <!-- Dynamically populated by JavaScript -->
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 Travel Budget Planner. All rights reserved.</p>
+    </footer>
+
+    <script type="module" src="scripts/budget.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>
